@@ -6,17 +6,24 @@
 //  Copyright © 2020 VCORVA. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 import Combine
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject {
+    
     let objectWillChange = PassthroughSubject<Void, Never>()
     
     // Publish the user's location so subscribers can react to updates
-    @Published var userLocation: CLLocation?
-    @Published private(set) var userAuthorization: CLAuthorizationStatus?
-    @Published var userAuthorizedGeo: Bool = false
+    @Published var userLocation: CLLocation? {
+        willSet{ objectWillChange.send() }
+    }
+    @Published var userAuthorization: CLAuthorizationStatus?{
+        willSet { objectWillChange.send() }
+    }
+    @Published var userAuthorizedGeo: Bool = false {
+        willSet{ objectWillChange.send() }
+    }
     private let manager = CLLocationManager()
 
     override init() {
@@ -24,7 +31,6 @@ class LocationManager: NSObject, ObservableObject {
         self.manager.delegate = self
         self.manager.desiredAccuracy = kCLLocationAccuracyBest
         self.manager.requestWhenInUseAuthorization()
-        self.manager.requestAlwaysAuthorization()
         self.manager.startUpdatingLocation()
     }
     

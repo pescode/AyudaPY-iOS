@@ -10,7 +10,6 @@ import SwiftUI
 import Combine
 
 class AppStore: ObservableObject{
-    @Published var helpRequestGeo:HelpRequestGeoModel = HelpRequestGeoModel(features: [])
-    @Published var helpRequest:HelpRequestModel?
+    
 }
 

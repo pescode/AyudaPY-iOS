@@ -61,23 +61,28 @@ struct ContentView: View {
                 
             }.padding(.bottom,32)
             
-            MapView(helpDetailsViewModel: helpDetailsViewModel, showMenu: $showMenu)
-                .edgesIgnoringSafeArea(.bottom)
-                .frame(maxHeight:.infinity)
-                .zIndex(-1)
+            if(locationManager.userAuthorizedGeo)
+            {
+                MapView(helpDetailsViewModel: helpDetailsViewModel, showMenu: $showMenu)
+                    .edgesIgnoringSafeArea(.bottom)
+                    .frame(maxHeight:.infinity)
+                    .zIndex(-1)
+            }else{
+                EmptyView()
+            }
             
             AyudaDetalleView(helpDetailsViewModel:helpDetailsViewModel)
-                .offset(x: 0, y: helpDetailsViewModel.showDetails ? 310 : 1000)
+                .offset(x: 0, y: helpDetailsViewModel.showDetails ? (UIScreen.main.bounds.size.height*0.52) : 1000)
                 .offset(y:bottomState.height)
                 .animation(.timingCurve(0.2, 0.80, 0.2, 1, duration: 0.4))
                 .gesture(
                     DragGesture().onChanged{ value in
                         self.bottomState = value.translation
                         if self.showDetailsFull{
-                            self.bottomState.height += -300
+                            self.bottomState.height += -(UIScreen.main.bounds.size.height*0.52)
                         }
-                        if self.bottomState.height < -300{
-                            self.bottomState.height = -300
+                        if self.bottomState.height < -(UIScreen.main.bounds.size.height*0.52){
+                            self.bottomState.height = -(UIScreen.main.bounds.size.height*0.52)
                         }
                     }
                     .onEnded{ value in
@@ -86,7 +91,7 @@ struct ContentView: View {
                             self.helpDetailsViewModel.clear()
                         }
                         if (self.bottomState.height < -100 && !self.showDetailsFull) || (self.bottomState.height < -250 && self.showDetailsFull){
-                            self.bottomState.height = -300
+                            self.bottomState.height = -(UIScreen.main.bounds.size.height*0.52)
                             self.showDetailsFull = true
                         }else{
                             self.bottomState = .zero

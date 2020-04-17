@@ -81,12 +81,13 @@ class GMapsCoordinator: NSObject, GMSMapViewDelegate {
         guard let helpItem = marker.userData as? HelpRequestGeoModel.Features else { return false }
         guard let helpID = helpItem.properties?.pk else { return false }
         self.parent.followUser = false
+        self.parent.showMenu = false
         self.parent.helpDetailsViewModel.get(helpID: helpID)
         selectedMarkerID = helpID
         CATransaction.begin()
         CATransaction.setValue(1.0, forKey: kCATransactionAnimationDuration)
         mapView.animate(toLocation: marker.position)
-        mapView.animate(toZoom: 18.5)
+        mapView.animate(toZoom: 17.5)
         CATransaction.commit()
         
         return false
