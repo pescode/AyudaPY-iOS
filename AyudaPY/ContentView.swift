@@ -68,7 +68,17 @@ struct ContentView: View {
                     .frame(maxHeight:.infinity)
                     .zIndex(-1)
             }else{
-                EmptyView()
+                VStack(alignment: .center, spacing: 20){
+                    Text("AyudaPY necesita acceso a tu ubicación")
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 16))
+                        .foregroundColor(Color("normal"))
+                    Text("Puedes modificar los permisos en Ajustes > Privacidad > Localización")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color("light"))
+                        .font(.system(size: 14))
+                }
+                .padding()
             }
             
             AyudaDetalleView(helpDetailsViewModel:helpDetailsViewModel)
