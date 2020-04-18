@@ -19,6 +19,9 @@
 		572EFF8B2448CF08001BDEBD /* HelpDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572EFF8A2448CF08001BDEBD /* HelpDetailsViewModel.swift */; };
 		572EFF8D244902D7001BDEBD /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572EFF8C244902D7001BDEBD /* UIViewController+Extensions.swift */; };
 		572EFF8F2449475F001BDEBD /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572EFF8E2449475F001BDEBD /* MultilineTextField.swift */; };
+		573174C3244A71FC00464940 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573174C0244A71FB00464940 /* iTunesArtwork@2x.png */; };
+		573174C4244A71FC00464940 /* iTunesArtwork@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573174C1244A71FB00464940 /* iTunesArtwork@1x.png */; };
+		573174C5244A71FC00464940 /* iTunesArtwork@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 573174C2244A71FC00464940 /* iTunesArtwork@3x.png */; };
 		57CAF054244A01F1001478E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57CAF053244A01F1001478E3 /* GoogleService-Info.plist */; };
 		57CAF056244A03DA001478E3 /* DefaultFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CAF055244A03DA001478E3 /* DefaultFontModifier.swift */; };
 		57DFEB6C2445466200BE44C9 /* HelpRequestGeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DFEB6B2445466200BE44C9 /* HelpRequestGeoModel.swift */; };
@@ -54,6 +57,9 @@
 		572EFF8A2448CF08001BDEBD /* HelpDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpDetailsViewModel.swift; sourceTree = "<group>"; };
 		572EFF8C244902D7001BDEBD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		572EFF8E2449475F001BDEBD /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		573174C0244A71FB00464940 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		573174C1244A71FB00464940 /* iTunesArtwork@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@1x.png"; sourceTree = "<group>"; };
+		573174C2244A71FC00464940 /* iTunesArtwork@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@3x.png"; sourceTree = "<group>"; };
 		57CAF053244A01F1001478E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57CAF055244A03DA001478E3 /* DefaultFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFontModifier.swift; sourceTree = "<group>"; };
 		57DFEB6B2445466200BE44C9 /* HelpRequestGeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRequestGeoModel.swift; sourceTree = "<group>"; };
@@ -119,6 +125,9 @@
 		570F3E25243F7E920058AFDE /* AyudaPY */ = {
 			isa = PBXGroup;
 			children = (
+				573174C1244A71FB00464940 /* iTunesArtwork@1x.png */,
+				573174C0244A71FB00464940 /* iTunesArtwork@2x.png */,
+				573174C2244A71FC00464940 /* iTunesArtwork@3x.png */,
 				57CAF053244A01F1001478E3 /* GoogleService-Info.plist */,
 				570F3E31243F7E970058AFDE /* LaunchScreen.storyboard */,
 				57DFEBB42447B84300BE44C9 /* Utilities */,
@@ -273,8 +282,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				570F3E33243F7E970058AFDE /* LaunchScreen.storyboard in Resources */,
+				573174C5244A71FC00464940 /* iTunesArtwork@3x.png in Resources */,
+				573174C3244A71FC00464940 /* iTunesArtwork@2x.png in Resources */,
 				570F3E30243F7E970058AFDE /* Preview Assets.xcassets in Resources */,
 				570F3E2D243F7E970058AFDE /* Assets.xcassets in Resources */,
+				573174C4244A71FC00464940 /* iTunesArtwork@1x.png in Resources */,
 				57CAF054244A01F1001478E3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
