@@ -45,7 +45,7 @@ struct InfoView: View {
             
             
             VStack(spacing:8) {
-                Text("Esta APP fue desarrollada por")
+                Text("Esta APP fue diseñada y desarrollada por")
                     .font(.system(size: 14, weight: .regular))
                     .foregroundColor(Color("normal"))
                 Button(action: {

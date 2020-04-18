@@ -47,7 +47,11 @@ struct AyudenmeView: View {
                     }
                     
                     Button(action: {
-                        self.startForm.toggle()
+                        guard let url = URL(string: "https://ayudapy.org/recibir") else { return }
+                        UIApplication.shared.open(url)
+                        
+                        //  OUR BEAUTIFUL FORM WILL WAIT TILL WE GOT A POST SERVICE AVAILABLE
+                        //self.startForm.toggle()
                     })
                     {
                         Text("Entiendo, quiero continuar")

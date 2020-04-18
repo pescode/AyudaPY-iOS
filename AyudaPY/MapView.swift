@@ -14,9 +14,10 @@ struct MapView: View {
     
     @ObservedObject var helpDetailsViewModel:HelpDetailsViewModel
     @Binding var showMenu:Bool
+    @ObservedObject var locationManager:LocationManager
     
     var body: some View{
-        GoogleMapView(helpDetailsViewModel:helpDetailsViewModel, showMenu: $showMenu)
+        GoogleMapView(helpDetailsViewModel:helpDetailsViewModel, showMenu: $showMenu, locationManager: locationManager)
     }
     
 }
@@ -24,12 +25,11 @@ struct MapView: View {
 struct GoogleMapView: UIViewRepresentable{
     @FetchRequest(fetchRequest: HelpItem.getAllHelpItems()) var helpItemsDataBase:FetchedResults<HelpItem>
     @ObservedObject var helpDetailsViewModel:HelpDetailsViewModel
-    
     @State var followUser:Bool = true
     var lm = CLLocationManager()
     
-    @EnvironmentObject var appState : AppStore
     @Binding var showMenu:Bool
+    @ObservedObject var locationManager:LocationManager
     
     func makeUIView(context: Context) -> GMSMapView {
         let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: 15.5)
@@ -44,7 +44,7 @@ struct GoogleMapView: UIViewRepresentable{
         mapView.isIndoorEnabled = false
         mapView.settings.compassButton = false
         mapView.delegate = context.coordinator
-        if let myLocation = lm.location
+        if let myLocation = locationManager.userLocation
         {
             mapView.animate(toLocation: myLocation.coordinate)
         }
@@ -54,11 +54,14 @@ struct GoogleMapView: UIViewRepresentable{
     func updateUIView(_ mapView: GMSMapView, context: Self.Context) {
         mapView.settings.myLocationButton = !showMenu
         
-        if followUser
+        if locationManager.userAuthorizedGeo
         {
-            if let myLocation = lm.location
+            if followUser
             {
-                mapView.animate(toLocation: myLocation.coordinate)
+                if let myLocation = locationManager.userLocation
+                {
+                    mapView.animate(toLocation: myLocation.coordinate)
+                }
             }
         }
         

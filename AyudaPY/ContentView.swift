@@ -63,7 +63,7 @@ struct ContentView: View {
             
             if(locationManager.userAuthorizedGeo)
             {
-                MapView(helpDetailsViewModel: helpDetailsViewModel, showMenu: $showMenu)
+                MapView(helpDetailsViewModel: helpDetailsViewModel, showMenu: $showMenu, locationManager: locationManager)
                     .edgesIgnoringSafeArea(.bottom)
                     .frame(maxHeight:.infinity)
                     .zIndex(-1)

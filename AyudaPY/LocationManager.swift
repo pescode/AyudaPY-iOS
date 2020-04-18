@@ -44,6 +44,7 @@ extension LocationManager: CLLocationManagerDelegate{
             self.manager.startUpdatingLocation()
         }else{
             self.userAuthorizedGeo = false
+            self.manager.requestWhenInUseAuthorization()
         }
     }
 
