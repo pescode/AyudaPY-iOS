@@ -2,6 +2,8 @@
 
 This is the mobile version of AyudaPY.org, an awesome platform to "help people help people" by Marcelo Elizeche Landó.
 
+![AyudaPY for iOS](/images/ayudaPYiOS01.png)
+
 #### About AyudaPY.org
 
 - Web site https://ayudapy.org
