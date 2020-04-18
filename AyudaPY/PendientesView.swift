@@ -14,7 +14,7 @@ struct PendientesView: View {
     
     @EnvironmentObject var appStates : AppStore
     var helpItems:FetchedResults<HelpItem>
-    @ObservedObject var helpDetails:HelpDetailsViewModel = HelpDetailsViewModel()
+    @State var helpDetails:HelpRequestModel = HelpRequestModel()
     
     @State var isPresentingDetail = false
     var body: some View {
@@ -43,7 +43,7 @@ struct PendientesView: View {
                     Button(action: {
                         
                         Api().getHelpRequest(with: helpItem.idPedido!.toUInt()!){ (result) in
-                            self.helpDetails.details = result
+                            self.helpDetails = result
                             self.isPresentingDetail.toggle()
                         }
  

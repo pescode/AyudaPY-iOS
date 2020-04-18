@@ -28,6 +28,13 @@ extension HelpRequestModel{
 }
 
 extension HelpRequestModel{
+    func firstName() -> String
+    {
+        guard let fullName = name else { return "" }
+        guard let firstName = fullName.split(separator: " ").first?.capitalized else { return "" }
+        return firstName
+    }
+    
     func added(outFormat:String, inFormat:String = "yyyy-MM-dd'T'HH:mm:ss.SSSZ") -> String
     {
         let formatter = DateFormatter()

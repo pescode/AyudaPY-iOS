@@ -232,7 +232,7 @@ struct AyudaContent: View {
                     }
                     .padding(.top,16)
                     HStack {
-                        Text("Utiliza esta opción para compartir en tus redes sociales este pedido de ayuda para que pueda llega a la persona que lo necesita.")
+                        Text("Ayudale a \(self.helpDetailsViewModel.details.firstName()) para que su pedido llegue a más personas compartiendo en tus redes sociales.")
                             .fixedSize(horizontal: false, vertical: true)
                             .font(.system(size: 14, weight: .regular, design: .default))
                             .foregroundColor(Color("normal"))
@@ -251,7 +251,7 @@ struct AyudaContent: View {
                                 .foregroundColor(Color.white)
                         }.sheet(isPresented: $showingShareSheet){
                             ShareSheet(activityItems: [
-                                "\(self.helpDetailsViewModel.details.name!.capitalized) necesita de nuestra ayuda! #ayudapy #ios",
+                                "\(self.helpDetailsViewModel.details.firstName()) necesita de nuestra ayuda! #ayudapy #ios",
                                 URL(string: "https://ayudapy.org/pedidos/\(self.helpDetailsViewModel.details.id ?? 0)")!])
                             
                         }

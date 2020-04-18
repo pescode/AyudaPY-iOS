@@ -17,7 +17,7 @@ struct PendienteDetalleView: View {
     @State private var showingMapsActionSheet = false
     @State private var showingShareSheet = false
     
-    @ObservedObject var helpDetails:HelpDetailsViewModel
+    var helpDetails:HelpRequestModel
     
     var body: some View {
         VStack{
@@ -33,13 +33,13 @@ struct PendienteDetalleView: View {
                 VStack {
                     VStack {
                         
-                        Text("Publicado el \(helpDetails.details.added(outFormat: "dd 'de' MMMM 'de' YYYY 'a las' HH:MM"))")
+                        Text("Publicado el \(helpDetails.added(outFormat: "dd 'de' MMMM 'de' YYYY 'a las' HH:MM"))")
                             .font(.system(size: 12, weight: .regular, design: .default))
                             .foregroundColor(Color("normal"))
                         
                         Group {
                             HStack {
-                                Text(helpDetails.details.title ?? "")
+                                Text(helpDetails.title ?? "")
                                     .fixedSize(horizontal: false, vertical: true)
                                     .font(.system(size: 18, weight: .bold, design: .default))
                                     .foregroundColor(Color("highlight"))
@@ -47,7 +47,7 @@ struct PendienteDetalleView: View {
                             }
                             .padding(.top,16)
                             HStack {
-                                Text(helpDetails.details.message ?? "")
+                                Text(helpDetails.message ?? "")
                                     .fixedSize(horizontal: false, vertical: true)
                                     .font(.system(size: 14, weight: .regular, design: .default))
                                     .foregroundColor(Color("normal"))
@@ -62,7 +62,7 @@ struct PendienteDetalleView: View {
                             }
                             .padding(.top,16)
                             HStack {
-                                Text(helpDetails.details.address ?? "")
+                                Text(helpDetails.address ?? "")
                                     .fixedSize(horizontal: false, vertical: true)
                                     .font(.system(size: 14, weight: .regular, design: .default))
                                     .foregroundColor(Color("normal"))
@@ -80,23 +80,23 @@ struct PendienteDetalleView: View {
                                 .actionSheet(isPresented: $showingMapsActionSheet){
                                     ActionSheet(
                                         title: Text("Seleccione una aplicación"),
-                                        message: Text("\(helpDetails.details.address ?? "")"),
+                                        message: Text("\(helpDetails.address ?? "")"),
                                         buttons: [
                                             .default(Text("Apple Maps"),action: {
-                                                let lat = self.helpDetails.details.location?.coordinates?[1] ?? 0
-                                                let lon = self.helpDetails.details.location?.coordinates?[0] ?? 0
+                                                let lat = self.helpDetails.location?.coordinates?[1] ?? 0
+                                                let lon = self.helpDetails.location?.coordinates?[0] ?? 0
                                                 let url:NSURL = URL(string: "maps://?daddr=\(lat),\(lon)")! as NSURL
                                                 UIApplication.shared.open(url as URL)
                                             }),
                                             .default(Text("Waze"),action: {
-                                                let lat = self.helpDetails.details.location?.coordinates?[1] ?? 0
-                                                let lon = self.helpDetails.details.location?.coordinates?[0] ?? 0
+                                                let lat = self.helpDetails.location?.coordinates?[1] ?? 0
+                                                let lon = self.helpDetails.location?.coordinates?[0] ?? 0
                                                 let url:NSURL = URL(string: "waze://?ll=\(lat),\(lon)&navigate=false")! as NSURL
                                                 UIApplication.shared.open(url as URL)
                                             }),
                                             .default(Text("Google Maps"),action: {
-                                                let lat = self.helpDetails.details.location?.coordinates?[1] ?? 0
-                                                let lon = self.helpDetails.details.location?.coordinates?[0] ?? 0
+                                                let lat = self.helpDetails.location?.coordinates?[1] ?? 0
+                                                let lon = self.helpDetails.location?.coordinates?[0] ?? 0
                                                 
                                                 let url:NSURL = URL(string: "comgooglemaps://?saddr=&daddr=\(lat),\(lon)&directionsmode=driving")! as NSURL
                                                 UIApplication.shared.open(url as URL)
@@ -121,7 +121,7 @@ struct PendienteDetalleView: View {
                             }
                             .padding(.top,16)
                             HStack {
-                                Text(helpDetails.details.name?.capitalized ?? "")
+                                Text(helpDetails.name?.capitalized ?? "")
                                     .fixedSize(horizontal: false, vertical: true)
                                     .font(.system(size: 14, weight: .regular, design: .default))
                                     .foregroundColor(Color("normal"))
@@ -133,28 +133,28 @@ struct PendienteDetalleView: View {
                                     self.showingCallActionSheet = true
                                     
                                 }){
-                                    Text(helpDetails.details.phone ?? "")
+                                    Text(helpDetails.phone ?? "")
                                         .font(.system(size: 16, weight: .bold, design: .default))
                                         .foregroundColor(Color.white)
                                 }
                                 .actionSheet(isPresented: $showingCallActionSheet){
                                     ActionSheet(
-                                        title: Text("Contactar con \(self.helpDetails.details.name ?? "" )"),
+                                        title: Text("Contactar con \(self.helpDetails.name ?? "" )"),
                                         message: Text("Seleccione una opción"),
                                         buttons: [
                                             .default(Text("Llamar"),action: {
-                                                let url:NSURL = URL(string: "tel://\(self.helpDetails.details.phone ?? "")")! as NSURL
+                                                let url:NSURL = URL(string: "tel://\(self.helpDetails.phone ?? "")")! as NSURL
                                                 UIApplication.shared.open(url as URL)
                                             }),
                                             .default(Text("Enviar un SMS"),action: {
-                                                let url:NSURL = URL(string: "sms:\(self.helpDetails.details.phone ?? "")")! as NSURL
+                                                let url:NSURL = URL(string: "sms:\(self.helpDetails.phone ?? "")")! as NSURL
                                                 UIApplication.shared.open(url as URL)
                                             }),
                                             .default(Text("WhatsApp"),action: {
-                                                let name = self.helpDetails.details.name?.capitalized ?? ""
-                                                let title = self.helpDetails.details.title ?? ""
-                                                let mensaje = "Hola \(name) te escribo por el pedido que hiciste \(title) https://ayudapy.org/pedidos/\(self.helpDetails.details.id ?? 0).".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-                                                let url:NSURL = URL(string: "whatsapp://send?phone=595\(self.helpDetails.details.phone ?? "")&text=\(mensaje ?? "")")! as NSURL
+                                                let name = self.helpDetails.name?.capitalized ?? ""
+                                                let title = self.helpDetails.title ?? ""
+                                                let mensaje = "Hola \(name) te escribo por el pedido que hiciste \(title) https://ayudapy.org/pedidos/\(self.helpDetails.id ?? 0).".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+                                                let url:NSURL = URL(string: "whatsapp://send?phone=595\(self.helpDetails.phone ?? "")&text=\(mensaje ?? "")")! as NSURL
                                                 UIApplication.shared.open(url as URL)
                                             }),
                                             .default(Text("Cancelar"))
@@ -177,7 +177,7 @@ struct PendienteDetalleView: View {
                             }
                             .padding(.top,16)
                             HStack {
-                                Text("Utiliza esta opción para compartir en tus redes sociales este pedido de ayuda para que pueda llega a la persona que lo necesita.")
+                                Text("Ayudale a \(self.helpDetails.firstName()) para que su pedido llegue a más personas compartiendo en tus redes sociales.")
                                     .fixedSize(horizontal: false, vertical: true)
                                     .font(.system(size: 14, weight: .regular, design: .default))
                                     .foregroundColor(Color("normal"))
@@ -196,8 +196,8 @@ struct PendienteDetalleView: View {
                                         .foregroundColor(Color.white)
                                 }.sheet(isPresented: $showingShareSheet){
                                     ShareSheet(activityItems: [
-                                        "\(self.helpDetails.details.name!.capitalized) necesita de nuestra ayuda! #ayudapy #ios",
-                                        URL(string: "https://ayudapy.org/pedidos/\(self.helpDetails.details.id ?? 0)")!])
+                                        "\(self.helpDetails.firstName()) necesita de nuestra ayuda! #ayudapy #ios",
+                                        URL(string: "https://ayudapy.org/pedidos/\(self.helpDetails.id ?? 0)")!])
                                     
                                 }
                                 .frame(maxWidth:.infinity)
@@ -302,11 +302,11 @@ struct PendienteDetalleView: View {
     func saveHelpItem(isPendingList:Bool = false, isAttendeded:Bool = false)
     {
         let helpItem = HelpItem(context: self.managedObjectContext)
-        helpItem.date = self.helpDetails.details.added
-        helpItem.name = self.helpDetails.details.name?.capitalized ?? ""
-        helpItem.desc = self.helpDetails.details.address ?? ""
-        helpItem.title = self.helpDetails.details.title ?? ""
-        helpItem.idPedido = "\(self.helpDetails.details.id ?? 0)"
+        helpItem.date = self.helpDetails.added
+        helpItem.name = self.helpDetails.name?.capitalized ?? ""
+        helpItem.desc = self.helpDetails.address ?? ""
+        helpItem.title = self.helpDetails.title ?? ""
+        helpItem.idPedido = "\(self.helpDetails.id ?? 0)"
         helpItem.isPendingList = isPendingList
         helpItem.isAttended = isAttendeded
         do{
@@ -318,7 +318,7 @@ struct PendienteDetalleView: View {
     
     func checkIfSavedHelpItem() -> HelpItem?
     {
-        let id = "\(helpDetails.details.id ?? 0)"
+        let id = "\(helpDetails.id ?? 0)"
         let find = helpItems.filter({$0.idPedido == id})
          
         guard let item = find.first else { return nil }
