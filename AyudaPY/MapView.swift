@@ -90,7 +90,7 @@ class GMapsCoordinator: NSObject, GMSMapViewDelegate {
         CATransaction.begin()
         CATransaction.setValue(1.0, forKey: kCATransactionAnimationDuration)
         mapView.animate(toLocation: marker.position)
-        mapView.animate(toZoom: 17.5)
+        mapView.animate(toZoom: 17)
         CATransaction.commit()
         
         return false

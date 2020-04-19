@@ -81,7 +81,7 @@ struct ContentView: View {
                 .padding()
             }
             
-            AyudaDetalleView(helpDetailsViewModel:helpDetailsViewModel)
+            AyudaDetalleView(helpDetailsViewModel:helpDetailsViewModel, showDetailsFull:$showDetailsFull)
                 .offset(x: 0, y: helpDetailsViewModel.showDetails ? (UIScreen.main.bounds.size.height*0.52) : 1000)
                 .offset(y:bottomState.height)
                 .animation(.timingCurve(0.2, 0.80, 0.2, 1, duration: 0.4))

@@ -12,6 +12,7 @@ import UIKit
 struct AyudaDetalleView: View {
     @EnvironmentObject var appState : AppStore
     @ObservedObject var helpDetailsViewModel:HelpDetailsViewModel
+    @Binding var showDetailsFull : Bool
     var body: some View {
         VStack {
             VStack {
@@ -24,9 +25,8 @@ struct AyudaDetalleView: View {
             if(self.helpDetailsViewModel.showDetails)
             {
                 ScrollView {
-                
                     AyudaContent(helpDetailsViewModel:helpDetailsViewModel)
-                }
+                }.disabled(!showDetailsFull)
                 
             }else{
                 EmptyView()
