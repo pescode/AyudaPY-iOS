@@ -24,9 +24,11 @@ struct AyudaDetalleView: View {
             .frame(height:60)
             if(self.helpDetailsViewModel.showDetails)
             {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     AyudaContent(helpDetailsViewModel:helpDetailsViewModel)
-                }.disabled(!showDetailsFull)
+                }
+                .disabled(!showDetailsFull)
+                .padding(.horizontal,32)
                 
             }else{
                 EmptyView()
@@ -347,7 +349,6 @@ struct AyudaContent: View {
             Spacer()
             
         }
-        .padding(.horizontal,32)
     }
     
     func saveHelpItem(isPendingList:Bool = false, isAttendeded:Bool = false)
