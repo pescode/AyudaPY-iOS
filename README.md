@@ -9,11 +9,13 @@ This is the mobile version of AyudaPY.org, an awesome platform to "help people h
 - Web site https://ayudapy.org
 - Platform repo https://github.com/melizeche/ayudapy
 - Author: Marcelo Elizeche Landó https://github.com/melizeche
+- Download this APP on the APP STORE: https://apps.apple.com/us/app/ayudapy/id1508566089?ls=1
 
 ## Requirements
 
 - iOS 13.0+
-- Xcode 11+
+- Xcode 11+ (Probably Xcode 11.4+ to avoid errors)
+- MacOS Catalina 10.15
 
 ## Dependencies
 
@@ -24,7 +26,7 @@ Third party framewoks and libraries are managed using Cocoapods.
 	- pod 'GooglePlaces'
 	- pod 'Firebase/Analytics'
 
-Firebase/Analytics is not necesary to run the project. Just remove import "Firebase" & FirebaseApp.configure() in AppDelegate.swift to run the project. GoogleService-Info.plist is not included in the repo.
+Firebase/Analytics is not necesary to run the project. Just comment lines 12 & 19 in AppDelegate.swift (import Firebase & FirebaseApp.configure()) to run the project. GoogleService-Info.plist is not included in the repo.
 
 ## Contributing
 
