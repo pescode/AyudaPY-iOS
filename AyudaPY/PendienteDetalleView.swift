@@ -18,7 +18,7 @@ struct PendienteDetalleView: View {
     @State private var showingShareSheet = false
     
     var helpDetails:HelpRequestModel
-    
+    var pic:UIImage? = nil
     var body: some View {
         VStack{
             VStack {
@@ -54,6 +54,12 @@ struct PendienteDetalleView: View {
                                 Spacer()
                             }
                             .padding(.top,16)
+                            if(pic != nil){
+                                Image(uiImage: pic!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height:200)
+                            }
                             HStack {
                                 Text("Dirección")
                                     .font(.system(size: 16, weight: .bold, design: .default))

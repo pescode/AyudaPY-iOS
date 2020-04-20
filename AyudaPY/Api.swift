@@ -68,4 +68,25 @@ class Api {
         }
         .resume()
     }
+    
+    func getImage(url:String, completion: @escaping(UIImage?) ->())
+    {
+        
+        guard let imgURL = URL(string: "https://ayudapy.org/media/pedidos/\(url)") else {
+            return
+        }
+        print("Load img \(imgURL)")
+        
+        print("")
+        URLSession.shared.dataTask(with: imgURL){ data, response, error in
+            
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(UIImage(data: data))
+            }
+        }.resume()
+    }
 }

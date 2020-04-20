@@ -18,6 +18,7 @@ struct HelpRequestModel: Codable {
     var city: String?
     var location:Location?
     var added:String?
+    var picture:String?
     var active:Bool?
 }
 

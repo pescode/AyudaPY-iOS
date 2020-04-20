@@ -86,7 +86,6 @@ struct AyudaContent: View {
     
     @ObservedObject var helpDetailsViewModel:HelpDetailsViewModel
     
-    
     var body: some View {
         VStack {
             VStack {
@@ -112,6 +111,12 @@ struct AyudaContent: View {
                         Spacer()
                     }
                     .padding(.top,16)
+                    if(helpDetailsViewModel.pic != nil){
+                        Image(uiImage: helpDetailsViewModel.pic!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height:200)
+                    }
                     HStack {
                         Text("Dirección")
                             .font(.system(size: 16, weight: .bold, design: .default))

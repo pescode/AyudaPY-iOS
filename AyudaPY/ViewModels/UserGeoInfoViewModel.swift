@@ -21,6 +21,9 @@ final class UserGeoInfoViewModel: ObservableObject {
         getUserGeoInfo()
     }
     
+}
+
+extension UserGeoInfoViewModel{
     func getUserGeoInfo(){
         let latitude = locationManager.location?.latitude ?? 0
         let longitude = locationManager.location?.longitude ?? 0

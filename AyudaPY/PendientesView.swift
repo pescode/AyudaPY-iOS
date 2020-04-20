@@ -17,6 +17,8 @@ struct PendientesView: View {
     @State var helpDetails:HelpRequestModel = HelpRequestModel()
     
     @State var isPresentingDetail = false
+    @State var pic:UIImage?
+    
     var body: some View {
         VStack(spacing: 20) {
             Rectangle()
@@ -42,9 +44,26 @@ struct PendientesView: View {
                 ForEach(self.helpItems){ helpItem in
                     Button(action: {
                         
+                        self.pic = nil
                         Api().getHelpRequest(with: helpItem.idPedido!.toUInt()!){ (result) in
                             self.helpDetails = result
-                            self.isPresentingDetail.toggle()
+                            
+                            guard let picURL = result.picture else {
+                                self.isPresentingDetail.toggle()
+                                return
+                            }
+                            
+                            let finalURL = "\(picURL.fileName())_th.\(picURL.fileExtension())"
+                            
+                            Api().getImage(url: finalURL){ responsePic in
+                                if let pic = responsePic
+                                {
+                                    self.pic = pic
+                                }
+                                self.isPresentingDetail.toggle()
+                            }
+                            
+                            
                         }
  
                         
@@ -92,7 +111,7 @@ struct PendientesView: View {
                         .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
                     }.sheet(isPresented: self.$isPresentingDetail)
                     {
-                        PendienteDetalleView(helpDetails: self.helpDetails)
+                        PendienteDetalleView(helpDetails: self.helpDetails, pic: self.pic)
                             .environment(\.managedObjectContext, self.managedObjectContext)
                     }
                 }
